@@ -1,0 +1,18 @@
+h2 {
+    font-size: 30px;
+    text-align: center;
+    font-family: 'Roboto';
+    color: #6A2A8F;
+    margin-bottom: 30px;
+  }
+
+  /* Clase para el color del botón normal */
+.btn-custom {
+  background-color: #6A2A8F;
+  color: white;
+}
+
+/* Clase para el color del botón al hacer clic */
+.btn-custom:hover {
+  background-color: #9150DA;
+}

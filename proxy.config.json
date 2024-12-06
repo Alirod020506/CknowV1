@@ -1,0 +1,9 @@
+{
+    "/questit-ws-core": {
+      "target": "http://74.208.105.127",
+      "secure": false,
+      "logLevel": "debug"
+    }
+  }
+   
+   

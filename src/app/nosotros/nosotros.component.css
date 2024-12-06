@@ -1,0 +1,67 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+  }
+  
+  .titulo {
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Poppins';
+    color: #400140;
+    padding-top: 70px;
+    margin-bottom: 30px;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px; /* Espacio entre la imagen y el texto */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .imagen-principal {
+    max-width: 500px; /* Ajusta según el espacio deseado */
+    width: 100%; /* Adaptable al contenedor */
+    height: auto; /* Mantener proporción */
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
+    object-fit: cover; /* Esto ayuda a mantener la proporción sin distorsión */
+  }
+  
+  .lista-imagenes {
+    max-width: 600px; /* Limitar ancho del texto */
+  }
+  
+  .texto {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+    text-align: left;
+  }
+  
+  @media (max-width: 800px) {
+    .container {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .imagen-principal {
+      margin-bottom: 20px;
+    }
+  
+    .texto {
+      text-align: center;
+      font-size: x-large;
+    }
+  }
+  

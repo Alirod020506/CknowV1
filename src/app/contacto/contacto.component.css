@@ -1,0 +1,64 @@
+.titulo {
+  font-size: 50px;
+  font-weight: bold;
+  font-family: 'Poppins';
+  text-align: center;
+  color: #400140;
+  padding-top: 70px;
+}
+
+.container {
+  height: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 40px; /* espacio entre elementos en pantallas pequeñas */
+  text-align: center; /* Centra el texto cuando los elementos se apilen */
+}
+
+.imagen {
+  width: 50px; /* Tamaño base de la imagen */
+  height: auto;
+  margin: 0 10px; /* Márgenes en los lados */
+}
+
+.texto {
+  font-size: 2rem;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .titulo {
+      font-size: 2.5rem;
+      padding-top: 40px;
+  }
+
+  .container {
+      gap: 10px; /* Reduce el espacio entre elementos */
+      flex-direction: column; /* Coloca los elementos en columna */
+  }
+
+  .imagen {
+      width: 40px; /* Reduce el tamaño de la imagen */
+      padding: 5px 0;
+  }
+
+  .texto {
+      font-size: 1.5rem; /* Reduce el tamaño del texto */
+  }
+}
+
+@media (max-width: 480px) {
+  .titulo {
+      font-size: 2rem;
+  }
+
+  .imagen {
+      width: 30px; /* Ajusta aún más la imagen */
+  }
+
+  .texto {
+      font-size: 1.2rem; /* Ajusta el texto para pantallas muy pequeñas */
+  }
+}

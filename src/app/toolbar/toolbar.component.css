@@ -1,0 +1,103 @@
+.toolbar {
+  color: #400140;
+  background-color: rgba(255, 255, 255, 0.8); /* Color de fondo blanco con transparencia */
+  height: 70px;
+  display: flex;
+  align-items: center;
+  gap: 30px; /* Reduce el espacio entre elementos */
+  font-family: 'Poppins';
+  font-weight: bold;
+  width: 100%;
+  overflow: hidden;
+  position: fixed; /* Mantiene la toolbar en la parte superior */
+  top: 0; /* Alinea al borde superior de la ventana */
+  z-index: 1000; /* Asegura que la barra esté por encima de otros elementos */
+  backdrop-filter: blur(5px); /* Opcional: agrega un efecto de desenfoque al fondo */
+}
+
+.logo {
+  width: 120px;
+  height: 80px;
+}
+
+.usuario {
+  width: 40px;
+  height: 40px;
+}
+
+.menu-button {
+  display: none; /* Oculta el menú hamburguesa por defecto */
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.nav-link {
+  white-space: nowrap; /* Evita que el texto se envuelva */
+  color: #400140; /* Color normal */
+  cursor: pointer;
+  transition: color 0.3s ease, text-decoration 0.3s ease;/* Suaviza la transición del color de texto */
+}
+
+.nav-link.active {
+  color: #9150DA; /* Color para la sección activa */
+  text-decoration: underline; /* Subrayado para la sección activa */
+}
+
+/* Nuevo estilo para el efecto hover en el texto */
+.nav-link:hover {
+  color: #9150DA; /* Cambia el color del texto al pasar el cursor */
+}
+
+/* Responsividad */
+@media (max-width: 1024px) {
+  .toolbar {
+    gap: 20px; /* Reduce el espacio entre elementos */
+  }
+
+  .logo {
+    width: 90px;
+    height: 60px;
+  }
+
+  .nav-link {
+    font-size: 0.9rem; /* Reduce el tamaño del texto de navegación */
+  }
+
+  .usuario {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .toolbar {
+    gap: 10px;
+  }
+
+  .logo {
+    width: 70px;
+    height: 50px;
+  }
+
+  .nav-link {
+    display: none; /* Oculta los enlaces de navegación */
+  }
+
+  .menu-button {
+    display: inline-block; /* Muestra el menú hamburguesa */
+  }
+}
+
+@media (max-width: 480px) {
+  .usuario {
+    width: 25px;
+    height: 25px;
+  }
+
+  .menu-icon {
+    width: 25px;
+    height: 25px;
+  }
+}

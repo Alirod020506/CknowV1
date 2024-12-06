@@ -1,0 +1,74 @@
+/*
+.background-image {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background-image: url(../assets/medio_logo2.png);
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: left;
+    opacity: 0.1; 
+    z-index: -1; 
+    height: 120%;
+    margin-top: 100px;
+  }
+  
+ .titulo{
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'Poppins';
+    text-align: center;
+    color: #400140;
+    padding-top: 70px;
+ }
+
+ .subtitulo{
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Roboto';
+ }
+
+ .container {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .imagen-principal {
+    max-width: 25%; /* Ajusta el tamaño de la imagen principal 
+    height: auto;
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 70px; /* Espaciado entre la imagen principal y la lista 
+    box-shadow: 20px 20px 10px rgba(0, 0, 0, 0.4);
+  }
+  
+  .lista-imagenes {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Espaciado entre cada ítem 
+  }
+  
+  .imagen-pequena {
+    height: auto;
+    margin-right: 10px; /* Espaciado entre la imagen pequeña y el texto 
+    align-self: self-start;
+  }
+  
+  .texto {
+    font-size: 1rem; /* Ajusta el tamaño del texto según sea necesario 
+  }
+  */
+  h1 {
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Poppins';
+    color: #400140;
+    padding-top: 70px;
+    margin-bottom: 30px;
+  }

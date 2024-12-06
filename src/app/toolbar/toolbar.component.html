@@ -1,0 +1,53 @@
+<mat-toolbar class="toolbar">
+  <button>
+    <img src="logo_without_text_and_tagline.png" alt="Logo" class="logo">
+  </button>
+  <span 
+    class="nav-link" 
+    [ngClass]="{ 'active': activeSection === 'inicio' }" 
+    (click)="scrollToSection('inicio')"
+  >
+    INICIO
+  </span>
+  <span 
+    class="nav-link" 
+    [ngClass]="{ 'active': activeSection === 'nosotros' }" 
+    (click)="scrollToSection('nosotros')"
+  >
+    ¿QUIÉNES SOMOS?
+  </span>
+  <span 
+    class="nav-link" 
+    [ngClass]="{ 'active': activeSection === 'servicios' }" 
+    (click)="scrollToSection('servicios')"
+  >
+    SERVICIOS
+  </span>
+  <span 
+    class="nav-link" 
+    [ngClass]="{ 'active': activeSection === 'metodologia' }" 
+    (click)="scrollToSection('metodologia')"
+  >
+    METODOLOGÍA
+  </span>
+  <span 
+    class="nav-link" 
+    [ngClass]="{ 'active': activeSection === 'preguntas' }" 
+    (click)="scrollToSection('preguntas')"
+  >
+    PREGUNTAS FRECUENTES
+  </span>
+  <span 
+    class="nav-link" 
+    [ngClass]="{ 'active': activeSection === 'contacto' }" 
+    (click)="scrollToSection('contacto')"
+  >
+    CONTÁCTO
+  </span>
+
+  <span class="example-spacer"></span>
+  <button class="usuario2" (click)="openLogin()">
+    <img src="circulo-de-usuario.png" alt="Usuario" class="usuario">
+  </button>
+
+</mat-toolbar>

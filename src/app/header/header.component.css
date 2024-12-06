@@ -1,0 +1,31 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 500px;
+    background: radial-gradient(circle at left, #400140,#400140, #FFFFFF, #FFFFFF);
+    padding: 0 10px;
+  }
+
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .frase {
+    font-size: 50px;
+    font-weight: bold;
+    color: #FFFFFF;
+    line-height: 1.2;
+    padding-left: 30px;
+    font-family: 'Poppins';
+  }
+  
+  .logo {
+    height: 500px;
+    width: auto;
+    align-self: flex-end;
+    padding-right: 10px;
+  }
+    
+
+ 
