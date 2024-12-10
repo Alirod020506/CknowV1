@@ -25,7 +25,6 @@
           <!-- Validaciones para el campo de correo -->
           <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-red-500 text-sm">
             <p *ngIf="loginForm.get('email')?.errors?.['required']">El correo es obligatorio.</p>
-            <p *ngIf="loginForm.get('email')?.errors?.['email']">Introduce un correo válido.</p>
           </div>
         </div>
       
@@ -42,7 +41,7 @@
           <!-- Validaciones para el campo de contraseña -->
           <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-red-500 text-sm">
             <p *ngIf="loginForm.get('password')?.errors?.['required']">La contraseña es obligatoria.</p>
-            <p *ngIf="loginForm.get('password')?.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres.</p>
+            <p *ngIf="loginForm.get('password')?.errors?.['minlength']">La contraseña debe tener al menos 5 caracteres.</p>
           </div>
         </div>
       
@@ -54,11 +53,6 @@
         >
           Iniciar sesión
         </button>
-      
-        <!-- Mensaje de Error Global -->
-        <div *ngIf="errorMessage" class="mt-4 text-red-500 text-center">
-          {{ errorMessage }}
-        </div>
       </form>
       
       <div class="mt-4 text-center">
