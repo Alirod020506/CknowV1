@@ -97,6 +97,7 @@ export class LoginComponent {
     decrypt(data: string): any {
       try {
         // Desencripta la cadena
+        //Cambiar la cadena a un enviroment
         const decrypted = CryptoJS.AES.decrypt(data, CryptoJS.enc.Utf8.parse('$3CR3T_p4$$w0rd_'), {
           mode: CryptoJS.mode.ECB,
           padding: CryptoJS.pad.NoPadding,
