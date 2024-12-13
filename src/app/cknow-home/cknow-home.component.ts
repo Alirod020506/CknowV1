@@ -14,7 +14,7 @@ import { CardCursoComponent } from '../card-curso/card-curso.component';
   styleUrl: './cknow-home.component.css'
 })
 export class CknowHomeComponent implements OnInit{
-
+  //menú desplegable
   menuOpen = false; 
   toggleMenu(): void { 
     this.menuOpen = !this.menuOpen; 
