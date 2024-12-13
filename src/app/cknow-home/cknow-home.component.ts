@@ -1,17 +1,24 @@
+import { NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as CryptoJS from 'crypto-js';
+import { CardCursoComponent } from '../card-curso/card-curso.component';
 
 
 @Component({
   selector: 'app-cknow-home',
   standalone: true,
-  imports: [],
+  imports: [NgIf, CardCursoComponent],
   templateUrl: './cknow-home.component.html',
   styleUrl: './cknow-home.component.css'
 })
 export class CknowHomeComponent implements OnInit{
+
+  menuOpen = false; 
+  toggleMenu(): void { 
+    this.menuOpen = !this.menuOpen; 
+  }
 
   private url2 = 'questit-ws-core/api/v1/private/manager/interno/candidato/datospersonales';
 

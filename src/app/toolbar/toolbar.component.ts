@@ -15,7 +15,8 @@ export class ToolbarComponent {
   activeSection = '';
   //nueva pantalla
   openLogin() { 
-    window.open('login','_blank', 'width=600,height=400,scrollbars=no,resizable=no,location=no,toolbar=no,menubar=no,status=no')}
+    window.open('login', '_blank', 'width=' + screen.width + ',height=' + screen.height + ',scrollbars=no,resizable=no,location=no,toolbar=no,menubar=no,status=no');
+}
 
   // Método para desplazarse a la sección y establecerla como activa
   scrollToSection(sectionId: string): void {

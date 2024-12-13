@@ -1,1 +1,37 @@
-<p>cknow-home works!</p>
+<nav class="bg-lila-claro p-4 flex items-center justify-between">
+    <!-- Menú desplegable a la izquierda -->
+    <div class="relative inline-block text-left">
+      <button (click)="toggleMenu()" class="text-morado1 inline-flex justify-center w-full rounded-md p-2 bg-lila-claro text-sm font-medium hover:bg-lila-claro focus:outline-none">
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </div>
+  
+    <!-- Logo en el centro -->
+    <div class="flex-1 text-center">
+      <img src="logo_con_texto_horizontal.png" alt="Logo" class="h-8 mx-auto">
+    </div>
+  
+    <!-- Ícono de usuario a la derecha -->
+    <div class="flex items-center text-morado1">
+      <div class="ml-2 text-left">
+        <div class="font-bold">Nombre Usuario</div>
+        <div class="text-sm">Puesto en la Empresa</div>
+      </div>
+      <img src="icono_usuario2.png" alt="Usuario" class="h-8 w-8 rounded-full">
+    </div>
+  </nav>
+  
+  <div *ngIf="menuOpen" class="fixed top-18 left-0 h-full w-64 bg-lila-claro z-40 shadow-lg">
+    <div class="py-2">
+      <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-lila border-b border-morado1" role="menuitem">Cursos</a>
+      <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-lila border-b border-morado1" role="menuitem">Capacitaciones</a>
+      <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-lila border-b border-morado1" role="menuitem">Cursos Pendientes</a>
+      <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-lila border-b border-morado1" role="menuitem">Cursos Finalizados</a>
+    </div>
+  </div>
+
+<div class="container mx-auto grid grid-cols-2 p-4 gap-8">
+    <app-card-curso></app-card-curso>
+  </div>
