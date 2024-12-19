@@ -1,7 +1,7 @@
 import { NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import * as CryptoJS from 'crypto-js';
 import { CardCursoComponent } from '../card-curso/card-curso.component';
 
@@ -9,7 +9,7 @@ import { CardCursoComponent } from '../card-curso/card-curso.component';
 @Component({
   selector: 'app-cknow-home',
   standalone: true,
-  imports: [NgIf, CardCursoComponent],
+  imports: [NgIf, RouterModule],
   templateUrl: './cknow-home.component.html',
   styleUrl: './cknow-home.component.css'
 })
@@ -23,6 +23,8 @@ export class CknowHomeComponent implements OnInit{
   private url2 = 'questit-ws-core/api/v1/private/manager/interno/candidato/datospersonales';
   nombreUsuario: string = 'Nombre Usuario';
   puestoUsuario: string = 'Puesto en la Empresa'; // Valor predeterminado o extraído del API
+  mostrarModal = false; // Controla la visibilidad del modal
+
 
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -81,6 +83,8 @@ export class CknowHomeComponent implements OnInit{
       });
   }
 
+  
+
   decrypt(data: string): any {
     try {
       const decrypted = CryptoJS.AES.decrypt(data, CryptoJS.enc.Utf8.parse('$3CR3T_p4$$w0rd_'), {
@@ -108,5 +112,29 @@ export class CknowHomeComponent implements OnInit{
       return null;
     }
   }
+
+   // Método para abrir el modal
+   abrirVentanaEmergente() {
+    this.mostrarModal = true;
+  }
+
+  // Método para cerrar el modal sin hacer nada
+  cerrarVentanaEmergente() {
+    this.mostrarModal = false;
+  }
+
+  // Método para cerrar sesión y redirigir al login
+  cerrarSesion() {
+    // Eliminar el token del almacenamiento
+    localStorage.removeItem('access_token');
+    sessionStorage.removeItem('access_token');
+
+    // Redirigir al login
+    this.router.navigate(['/login']);
+
+    // Cerrar el modal
+    this.mostrarModal = false;
+  }
+
 
 }
