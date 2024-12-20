@@ -1,37 +1,89 @@
-<nav class="bg-lila-claro p-4 flex items-center justify-between">
-    <!-- Menú desplegable a la izquierda -->
-    <div class="relative inline-block text-left">
-      <button (click)="toggleMenu()" class="text-morado1 inline-flex justify-center w-full rounded-md p-2 bg-lila-claro text-sm font-medium hover:bg-lila-claro focus:outline-none">
-        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-        </svg>
-      </button>
-    </div>
-  
-    <!-- Logo en el centro -->
-    <div class="flex-1 text-center">
-      <img src="logo_con_texto_horizontal.png" alt="Logo" class="h-8 mx-auto">
-    </div>
-  
-    <!-- Ícono de usuario a la derecha -->
-    <div class="flex items-center text-morado1">
-      <div class="ml-2 text-left">
-        <div class="font-bold">Nombre Usuario</div>
-        <div class="text-sm">Puesto en la Empresa</div>
-      </div>
-      <img src="icono_usuario2.png" alt="Usuario" class="h-8 w-8 rounded-full">
-    </div>
-  </nav>
-  
-  <div *ngIf="menuOpen" class="fixed top-18 left-0 h-full w-64 bg-lila-claro z-40 shadow-lg">
-    <div class="py-2">
-      <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-lila border-b border-morado1" role="menuitem">Cursos</a>
-      <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-lila border-b border-morado1" role="menuitem">Capacitaciones</a>
-      <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-lila border-b border-morado1" role="menuitem">Cursos Pendientes</a>
-      <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-lila border-b border-morado1" role="menuitem">Cursos Finalizados</a>
+<div class="flex h-screen overflow-hidden">
+  <!-- Sidebar -->
+  <div *ngIf="menuOpen" class="fixed top-20 left-0 h-full w-64 bg-lila-claro z-40 shadow-lg">
+    <div class="py-4">
+      <a routerLink="./cursos" routerLinkActive="bg-morado1 text-white" class="block px-4 py-2 text-sm text-black hover:bg-lila border-b border-morado1" role="menuitem">
+        Cursos
+      </a>
+      <a routerLink="./alta-curso" routerLinkActive="bg-morado1 text-white" class="block px-4 py-2 text-sm text-black hover:bg-lila border-b border-morado1" role="menuitem">
+        Alta de Curso
+      </a>
+      <a routerLink="./capacitaciones" routerLinkActive="bg-morado1 text-white" class="block px-4 py-2 text-sm text-black hover:bg-lila border-b border-morado1" role="menuitem">
+        Capacitaciones
+      </a>
+      <a routerLink="./cursos-pendientes" routerLinkActive="bg-morado1 text-white" class="block px-4 py-2 text-sm text-black hover:bg-lila border-b border-morado1" role="menuitem">
+        Cursos Pendientes
+      </a>
+      <a routerLink="./cursos-finalizados" routerLinkActive="bg-morado1 text-white" class="block px-4 py-2 text-sm text-black hover:bg-lila border-b border-morado1" role="menuitem">
+        Cursos Finalizados
+      </a>
+      <a routerLink="./reporte-cursos" routerLinkActive="bg-morado1 text-white" class="block px-4 py-2 text-sm text-black hover:bg-lila border-b border-morado1" role="menuitem">
+        Reporte de Cursos
+      </a>
     </div>
   </div>
 
-<div class="container mx-auto grid grid-cols-2 p-4 gap-8">
-    <app-card-curso></app-card-curso>
+  <!-- Main Content -->
+  <div class="flex flex-col w-full transition-all duration-300">
+    <!-- Navbar -->
+    <nav class="bg-lila-claro p-4 flex justify-between items-center shadow-md">
+      <!-- Menu Toggle (Opcional para móviles) -->
+      <div class="relative inline-block text-left">
+        <button (click)="toggleMenu()" class="text-morado1 inline-flex justify-center w-full rounded-md p-2 bg-lila-claro text-sm font-medium hover:bg-lila-claro focus:outline-none">
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Logo -->
+      <div class="text-center items-center">
+        <img src="logo_con_texto_horizontal.png" alt="Logo" class="h-8 mx-auto">
+      </div>
+
+      <!-- User Info -->
+      <div class="flex items-center space-x-2 text-morado1">
+        <div class="text-right">
+          <div class="font-bold">{{ nombreUsuario }}</div>
+          <button
+            (click)="abrirVentanaEmergente()"
+            class="text-sm text-blue-500 hover:underline"
+          >
+            Cerrar sesión
+          </button>
+        </div>
+        <img src="icono_usuario2.png" alt="Usuario" class="h-8 w-8 rounded-full">
+      </div>
+    </nav>
+
+    <!-- Dynamic Workspace -->
+    <main class="flex-1 p-6 bg-gray-100">
+      <router-outlet></router-outlet>
+    </main>
   </div>
+</div>
+
+<!-- Ventana emergente -->
+<div
+  *ngIf="mostrarModal"
+  class="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center z-50"
+>
+  <div class="bg-white rounded-lg shadow-lg p-6 w-80">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4 text-center">Estás a punto de salir :)</h2>
+    <p class="text-gray-600 mb-6 text-center">¿Quieres cerrar tu sesión?</p>
+    <div class="flex justify-end space-x-4">
+      <button
+        (click)="cerrarVentanaEmergente()"
+        class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+      >
+        Cancelar
+      </button>
+      <button
+        (click)="cerrarSesion()"
+        class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+      >
+        Cerrar sesión
+      </button>
+    </div>
+  </div>
+</div>
