@@ -12,10 +12,9 @@ import { ReporteCursosComponent } from './private/reporte-cursos/reporte-cursos.
 export const routes: Routes = [
     { path: '', component: HomeComponent},
     {path: 'login', component: LoginComponent},
-    { path: 'home', component: CknowHomeComponent},
-    {path:'',
-         component: CknowHomeComponent,
+    { path: 'home', component: CknowHomeComponent,
          children: [
+            { path: '', redirectTo: 'cursos', pathMatch: 'full' },
             { path: 'cursos', component: CursosComponent },
             { path: 'alta-curso', component: AltaCursoComponent },
             { path: 'capacitaciones', component: CapacitacionesComponent },
