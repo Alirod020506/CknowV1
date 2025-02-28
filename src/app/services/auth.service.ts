@@ -10,7 +10,6 @@ export class AuthService {
   private http = inject(HttpClient);
   //private url = "http://74.208.105.127/questit-ws-core/oauth/token"
   private url = "questit-ws-core/oauth/token" //Descomentar cuando sea por proxy
-  private url2 = "questit-ws-core/api/v1/private/manager/interno/candidato/datospersonales"
 
 
   constructor() { }

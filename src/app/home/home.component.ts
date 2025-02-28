@@ -7,12 +7,11 @@ import { NosotrosComponent } from '../nosotros/nosotros.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { MetodologiaComponent } from '../metodologia/metodologia.component';
 import { HeaderComponent } from '../header/header.component';
-import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterOutlet,
+  imports: [
     HeaderComponent,
     MetodologiaComponent, ToolbarComponent, NosotrosComponent, ServiciosComponent, PreguntasComponent, ContactoComponent, FooterComponent],
   templateUrl: './home.component.html',
