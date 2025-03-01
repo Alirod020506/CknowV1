@@ -1,0 +1,46 @@
+<div class="max-w-2xl mx-auto bg-white shadow-xl rounded-lg p-8 mt-10 relative">
+  <div class="w-full rounded-full h-2 mb-6">
+    <!-- Botón de regreso -->
+    <button (click)="goBack()"
+    class="absolute top-4 left-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded">
+      Regresar
+    </button>
+  </div>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <h1 class="text-2xl text-center font-poppins mb-4 items-center">{{ tituloEncuesta }}</h1>
+
+  <!-- Barra de progreso -->
+  <div class="w-full bg-[#D6B3FF] rounded-full h-2 mb-6">
+    <div class="bg-[#400140] h-2 rounded-full transition-all duration-500"
+         [style.width.%]="getProgressPercentage()">
+    </div>
+  </div>  
+
+  <div *ngIf="preguntas.length > 0 && currentQuestionIndex < preguntas.length" class="p-6 rounded-lg bg-gray-50">
+    <div class="flex justify-between items-center mb-4">
+      <span class="text-lg font-semibold text-center text-black">Pregunta {{ currentQuestionNumber }} de {{ totalPreguntas }}</span>
+      <span class="text-lg font-mono bg-[#D6B3FF] text-black-800 px-4 py-1 rounded shadow">{{ formatTime(timeLeft) }}</span>
+    </div>
+
+    <p class="text-xl font-medium font-poppins text-gray-900 mb-6">{{ preguntas[currentQuestionIndex].texto }}</p>
+
+    <div *ngIf="preguntas[currentQuestionIndex].tipo === 1">
+      <form class="space-y-4">
+        <div *ngFor="let respuesta of preguntas[currentQuestionIndex].respuestas" class="flex items-center space-x-3 p-3 bg-[#D6B3FF] hover:bg-indigo-200 rounded-lg transition">
+          <input type="radio" [value]="respuesta" name="respuesta" (change)="onAnswerChange(respuesta)" [checked]="selectedAnswer === respuesta" class="w-6 h-6 text-indigo-500">
+          <label class="text-lg text-indigo-900 font-medium">{{ respuesta.texto }}</label>
+        </div>
+      </form>
+    </div>
+
+    <button (click)="submitAnswer()" [disabled]="!selectedAnswer && timeLeft > 0"
+      class="mt-6 w-full bg-[#400140] hover:bg-[#D6B3FF] text-white font-bold py-3 rounded-lg shadow-md transform hover:scale-105 transition duration-200">
+      Siguiente
+    </button>
+  </div>
+
+  <div *ngIf="currentQuestionIndex >= preguntas.length" class="text-center mt-8">
+    <h2 class="text-3xl font-bold text-[#400140] ">¡Encuesta completada!</h2>
+    <p class="text-lg text-gray-600">Gracias por participar.</p>
+  </div>
+</div>

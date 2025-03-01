@@ -1,0 +1,35 @@
+<div *ngIf="showCards" class="max-w-full mx-auto bg-white shadow rounded p-4">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+ <h1 class="text-2xl text-center font-bold mb-4 items-center font-poppins">Mis cursos</h1>
+ <div id="cards-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 overflow-y-auto max-h-[80vh] p-4">
+   <a 
+     *ngFor="let encuesta of encuestas" 
+     [routerLink]="['/home/cursos/preguntas', encuesta.fi_id_encuesta]"
+     [queryParams]="{ titulo: encuesta.fc_titulo_encuesta, total: encuesta.fi_numero_preguntas }"
+     class="flex flex-col items-center bg-lila-claro border border-gray-200 shadow-right-down md:flex-row md:max-w-4xl hover:bg-lila">
+     <!-- Contenido de la card -->
+     <img 
+       [src]="convertHexToBase64(encuesta.fa_logo || '')" 
+       class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg">
+     <div class="flex flex-col justify-between p-4 leading-normal">
+       <h5 class="mb-2 text-2xl font-poppins tracking-tight text-black">
+         {{ encuesta.fc_titulo_encuesta || 'Título no disponible' }}
+       </h5>
+       <p class="mb-3 font-normal text-black">
+         {{ encuesta.fi_numero_preguntas || '0' }} preguntas
+       </p>
+       <p class="mb-3 font-normal text-black">
+         Empresa: {{ encuesta.fc_nombre_comercial || 'Sin nombre comercial' }}
+       </p>
+       <p class="mb-3 font-normal text-black">
+         Descripción: {{ encuesta.fc_descripcion || 'Sin descripción' }}
+       </p>
+     </div>
+   </a>
+ </div>
+</div>
+
+<!-- Aquí se mostrará el componente de encuesta cuando se active la ruta hija -->
+<router-outlet></router-outlet>
+
+

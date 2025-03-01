@@ -10,7 +10,6 @@ import { AuthInterceptor } from './interceptors/auth.interceptor'; // Importar e
   imports: [
     RouterOutlet,
     FormsModule,  // Asegúrate de incluir FormsModule
-    HttpClientModule,  // Asegúrate de que HttpClientModule esté presente si usas peticiones HTTP
     
   ],
   templateUrl: './app.component.html',
