@@ -1,0 +1,25 @@
+<nav class="bg-lila-claro p-4 flex justify-center items-center shadow-md">
+    <!-- Logo -->
+    <div class="text-center">
+      <img src="logo_con_texto_horizontal.png" alt="Logo" class="h-8">
+    </div>
+</nav>
+
+<div class="max-w-2xl mx-auto mt-6 p-6 bg-white shadow-lg rounded-lg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <h2 class="text-xl font-bold mb-4 text-center font-poppins">{{ data?.[0]?.fcTituloEncuesta }}</h2>
+    <p class="text-lg font-bold mt-4 text-center">Total: {{ data?.[0]?.total }}</p>
+    
+    <div class="space-y-4">
+      <div *ngFor="let pregunta of data?.[0]?.preguntaDescripcion" class="p-4 border rounded-lg flex items-center justify-between">
+        <div class="w-full pr-4">
+            <p class="text-gray-700">{{ pregunta.fc_descripcion_pregunta }}</p>
+            <p class="text-sm font-semibold mt-2">Calificación: {{ pregunta.fiCalificacion }}</p>
+        </div>
+        <div class="flex-shrink-0">
+            <img *ngIf="pregunta.fiCalificacion === 0" src="incorrecto.png" alt="Ícono incorrecto" class="icono-tamano">
+            <img *ngIf="pregunta.fiCalificacion === 1" src="correcto.png" alt="Ícono correcto" class="icono-tamano">
+          </div>
+      </div>
+    </div>
+</div>
