@@ -1,1 +1,133 @@
 <p>alta-curso works!</p>
+<div *ngIf="preguntas.length > 0; else noPreguntas" 
+    style="border: 1px solid #ddd; border-radius: 15px; padding: 20px; background-color: #ffffff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); max-height: 80vh; overflow-y: auto; margin-bottom: 100px;">
+    <h2 style="text-align: center; margin-bottom: 20px;">Listado de Preguntas</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; align-items: stretch;">
+      <div *ngFor="let pregunta of preguntas" 
+           style="position: relative; flex: 1 1 calc(50% - 20px); border: 1px solid #ddd; border-radius: 10px; padding: 20px; background-color: #f9f9f9; box-sizing: border-box; max-width: 100%; min-width: 300px; display: flex; flex-direction: column; justify-content: space-between;">
+        <div style="position: absolute; top: 10px; right: 10px;">
+          <div style="cursor: pointer; font-size: 24px;" (click)="toggleMenu(pregunta.fi_id_pregunta)">
+            &#x22EE;
+          </div>
+          <div *ngIf="pregunta.mostrarMenu" 
+               style="position: absolute; top: 30px; right: 0; background: #fff; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); z-index: 10; padding: 10px; width: 150px;">
+            <ul style="list-style: none; margin: 0; padding: 0;">
+              <li style="padding: 10px; cursor: pointer; font-size: 16px; text-align: left; transition: background-color 0.3s ease;" 
+                  (click)="editarPregunta(pregunta.fi_id_pregunta)"
+                  onmouseover="this.style.backgroundColor='#f0f0f0'" onmouseout="this.style.backgroundColor='transparent'">
+                Editar
+              </li>
+              <li style="padding: 10px; cursor: pointer; font-size: 16px; text-align: left; transition: background-color 0.3s ease;" 
+                  (click)="eliminarPregunta(pregunta.fi_id_pregunta)"
+                  onmouseover="this.style.backgroundColor='#f0f0f0'" onmouseout="this.style.backgroundColor='transparent'">
+                Eliminar
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <h3>Pregunta #{{ pregunta.fi_id_pregunta }}</h3>
+          <p><strong>Descripción:</strong> {{ pregunta.fc_descripcion_pregunta }}</p>
+        </div>
+        <p style="font-size: 12px; color: #666;"><small>Creada el: {{ pregunta.fdFechaCreacion | date: 'dd-MM-yyyy' }}</small></p>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #noPreguntas>
+    <p>No se encontraron preguntas disponibles.</p>
+  </ng-template>
+  
+  <!-- Pantalla emergente (Modal principal para agregar pregunta) -->
+  <div *ngIf="mostrarModal" 
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1000;">
+    <div style="width: 90%; max-width: 600px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); text-align: center;">
+      <h2>Agregar Nueva Pregunta</h2>
+      
+      <!-- Campo de Especialidad -->
+      <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
+        <label><strong>Especialidad:</strong></label>
+        <select [(ngModel)]="especialidad" class="form-control" required>
+          <option value="" disabled selected>Seleccione una especialidad</option>
+          <option *ngFor="let esp of especialidades" [value]="esp.fi_id_especialidad">{{ esp.fc_descripcion }}</option>
+        </select>
+      </div>
+      
+      <!-- Campo de Tipo (abierta o cerrada) -->
+      <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
+        <label><strong>Tipo:</strong></label>
+        <select [(ngModel)]="tipo" (change)="onTipoChange()" class="form-control" required>
+          <option value="abierta">Abierta</option>
+          <option value="cerrada">Cerrada</option>
+        </select>
+      </div>
+      
+      <!-- Campo de Pregunta -->
+      <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
+        <label><strong>Pregunta:</strong></label>
+        <textarea [(ngModel)]="pregunta" placeholder="Ingrese la pregunta..." 
+                  style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; height: 80px;"></textarea>
+      </div>
+      
+      <!-- Preguntas Abiertas -->
+      <div *ngIf="tipo === 'abierta'">
+        <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
+          <label><strong>Respuesta:</strong></label>
+          <textarea [(ngModel)]="respuestaAbierta" placeholder="Ingrese la respuesta..." 
+                    style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; height: 80px;"></textarea>
+        </div>
+      </div>
+      
+      <!-- Preguntas Cerradas (fijas A, B, C, D) -->
+      <div *ngIf="tipo === 'cerrada'">
+        <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
+          <label><strong>Respuesta A</strong></label>
+          <input type="text" [(ngModel)]="respuestasCerradas[0]" placeholder="Respuesta A" 
+                 style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+        <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
+          <label><strong>Respuesta B</strong></label>
+          <input type="text" [(ngModel)]="respuestasCerradas[1]" placeholder="Respuesta B" 
+                 style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+        <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
+          <label><strong>Respuesta C</strong></label>
+          <input type="text" [(ngModel)]="respuestasCerradas[2]" placeholder="Respuesta C" 
+                 style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+        <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
+          <label><strong>Respuesta D</strong></label>
+          <input type="text" [(ngModel)]="respuestasCerradas[3]" placeholder="Respuesta D" 
+                 style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+        <!-- Se quitan botones de agregar/eliminar, ya que son estáticas -->
+      </div>
+      
+      <!-- Botones del modal -->
+      <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+        <button (click)="cerrarModal()" style="background: #ccc; padding: 10px; border-radius: 5px;">Cancelar</button>
+        <button (click)="guardarPregunta()" style="background: #7e0587; color: white; padding: 10px; border-radius: 5px;">Guardar Pregunta</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal de mensaje de éxito o error -->
+  <div *ngIf="mostrarModalMensaje" 
+       style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 2000;">
+    <div style="width: 90%; max-width: 400px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); text-align: center;">
+      <h2 *ngIf="tipoMensajeModal === 'exito'" style="color: green;">¡Éxito!</h2>
+      <h2 *ngIf="tipoMensajeModal === 'error'" style="color: red;">¡Error!</h2>
+      <p>{{ mensajeModal }}</p>
+      <button (click)="cerrarModalMensaje()" 
+              style="background: #7e0587; color: white; padding: 10px; border-radius: 5px; margin-top: 10px;">
+        Cerrar
+      </button>
+    </div>
+  </div>
+  
+  <!-- Botón para abrir el modal -->
+  <button (click)="abrirModal()" 
+       style="position: fixed; bottom: 10px; right: 30px; background: #7e0587; color: white; padding: 12px; border-radius: 8px;">
+    Agregar Más
+  </button>
+  
